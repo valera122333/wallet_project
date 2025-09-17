@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.db import transaction
+from django.core.exceptions import ValidationError
 
 class Wallet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -21,6 +22,9 @@ class Operation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
+        if self.amount <= 0:
+            raise ValidationError("Сумма должна быть положительным числом")
+    
         with transaction.atomic():
             wallet = Wallet.objects.select_for_update().get(pk=self.wallet.pk)
             if self.operation_type == self.DEPOSIT:

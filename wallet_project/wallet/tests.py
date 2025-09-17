@@ -65,3 +65,8 @@ class WalletAPITestCase(TestCase):
         logger.info(f"Статус: {response.status_code}, : {response.json()}")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(float(response.json()['balance']), 1234.56)
+    
+    def test_negative_deposit(self):
+        data = {"operation_type": "DEPOSIT", "amount": "-100"}
+        response = self.client.post(self.operation_url, data, content_type='application/json')
+        self.assertEqual(response.status_code, 400)

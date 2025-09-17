@@ -4,6 +4,7 @@ from rest_framework import status
 from .models import Wallet, Operation
 from .serializers import OperationSerializer, WalletSerializer
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ValidationError
 
 class WalletBalanceView(APIView):
     def get(self, request, wallet_id):
@@ -19,6 +20,10 @@ class WalletOperationView(APIView):
         try:
             operation = Operation(wallet=wallet, **serializer.validated_data)
             operation.save()
-        except ValueError as e:
+        except (ValueError, ValidationError) as e:
             return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({'detail': 'Operation successful'}, status=status.HTTP_200_OK)
+        
+        return Response({'detail': 'успешная операция'}, status=status.HTTP_200_OK)
+
+ 
+
