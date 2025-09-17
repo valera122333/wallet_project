@@ -58,14 +58,17 @@ API-сервис для работы с кошельками: пополнени
 ## Скриншоты
 
 Успешный POST-запрос (DEPOSIT)
+
 <img width="825" height="569" alt="image" src="https://github.com/user-attachments/assets/73a8422e-5150-4354-ac5a-09711af67995" />
 
 
 Ошибка при недостатке средств
+
 <img width="842" height="570" alt="image" src="https://github.com/user-attachments/assets/daf396f2-f888-43b3-b30f-526190ab4986" />
 
 
 Получение баланса
+
 <img width="817" height="540" alt="image" src="https://github.com/user-attachments/assets/51387f53-7090-4204-bc5e-ff2ae7eb3e52" />
 
 ## Комментарий. 
